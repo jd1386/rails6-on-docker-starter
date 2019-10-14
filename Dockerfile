@@ -18,9 +18,9 @@ RUN apt-get -y update && \
   tzdata \
   less
 
-RUN mkdir /app
+RUN mkdir /myapp
 RUN mkdir /usr/local/nvm
-WORKDIR /app
+WORKDIR /myapp
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
@@ -36,7 +36,7 @@ RUN npm install -g yarn
 RUN yarn install --check-files
 RUN rails webpacker:install
 
-COPY . /app
+COPY . /myapp
 
 # Add a script to be executed every time the container starts
 COPY entrypoint.sh /usr/bin
